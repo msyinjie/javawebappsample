@@ -1,5 +1,9 @@
 import groovy.json.JsonSlurper
+import com.cloudbees.plugins.credentials.CredentialsNameProvider
+import com.cloudbees.plugins.credentials.Credentials
+import com.cloudbees.plugins.credentials.CredentialsProvider
 import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials
+import com.cloudbees.jenkins.plugins.sshcredentials.SSHUserPrivateKey
 
 def getFtpPublishProfile(def publishProfilesJson) {
   def pubProfiles = new JsonSlurper().parseText(publishProfilesJson)
