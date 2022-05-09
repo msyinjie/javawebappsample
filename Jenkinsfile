@@ -27,7 +27,9 @@ node {
       def resourceGroup = 'acf-rg0'
       def webAppName = 'jenkinsapp01'
       // login Azure
-      withCredentials([usernamePassword(credentialsId: 'azure', passwordVariable: 'AZURE_CLIENT_SECRET', usernameVariable: 'AZURE_CLIENT_ID')]) {
+   
+
+      withCredentials([azureServicePrincipal(credentialsId: 'azure', subscriptionIdVariable: 'AZURE_SUBSCRIPTION_ID', clientSecretVariable: 'AZURE_CLIENT_SECRET', clientIdVariable: 'AZURE_CLIENT_ID', tenantIdVariable: 'AZURE_TENANT_ID')]) {
        sh '''
           az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
           az account set -s $AZURE_SUBSCRIPTION_ID
